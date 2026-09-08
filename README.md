@@ -1,1 +1,608 @@
-# SameannnEvent
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เสมียนอีเว๊นนน</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f6;
+            color: #111;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 10px;
+        }
+
+        /* Container การ์ดหลัก */
+        .app-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #eaeaea;
+        }
+
+        /* แถบ Gradient ด้านบน */
+        .header-gradient {
+            height: 12px;
+            background: linear-gradient(90deg, #4de0e8 0%, #7d52e8 100%);
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        /* Title Style */
+        .brand-title {
+            font-family: 'Syne', 'Prompt', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 4px;
+            color: #000;
+        }
+
+        .sub-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        /* Section Block */
+        .section-box {
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 6px;
+        }
+
+        /* Form Inputs */
+        .input-group {
+            margin-bottom: 12px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .input-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fff;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .input-control:focus {
+            border-color: #000;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            background: #333;
+        }
+
+        /* Friends Tag List */
+        .friends-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 4px 8px 4px 4px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .chip img {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            margin-right: 6px;
+            background: #eee;
+        }
+        .chip .remove-btn {
+            margin-left: 6px;
+            cursor: pointer;
+            color: #ff4d4d;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Item Row in List */
+        .item-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .item-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .item-tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-left: 6px;
+        }
+        .tag-food { background: #ffe3e3; color: #d6336c; }
+        .tag-drink { background: #e7f5ff; color: #1c7ed6; }
+
+        .select-sharers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+        }
+        .avatar-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.25;
+            filter: grayscale(100%);
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .avatar-toggle.selected {
+            opacity: 1;
+            filter: grayscale(0%);
+            border-color: #000;
+            transform: scale(1.1);
+        }
+
+        /* Divide Cost Summary Grid */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .person-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .person-card img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-bottom: 6px;
+            background: #f0f0f0;
+        }
+        .person-name {
+            font-weight: 800;
+            font-size: 14px;
+        }
+        .person-breakdown {
+            font-size: 11px;
+            color: #666;
+            margin: 4px 0;
+            line-height: 1.3;
+        }
+        .person-total {
+            font-weight: 800;
+            font-size: 15px;
+            color: #000;
+            margin-top: auto;
+        }
+
+        /* Grand Total Box */
+        .grand-total-box {
+            background: #000;
+            color: #fff;
+            padding: 16px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+        .grand-total-box .price {
+            font-size: 22px;
+            font-weight: 800;
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Payment Box */
+        .payment-box {
+            text-align: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed #ccc;
+        }
+        .qr-placeholder {
+            width: 130px;
+            height: 130px;
+            background: #f4f4f6;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #888;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-card">
+        <div class="header-gradient"></div>
+
+        <div class="content">
+            <!-- Header -->
+            <div class="brand-title">เสมียนอีเว๊นนน</div>
+            <div class="sub-title">(Friend Food Splitting System)</div>
+
+            <!-- 1. Event Section & Setup -->
+            <div class="section-box">
+                <div class="section-title">
+                    <span>1. Event Setup</span>
+                </div>
+
+                <!-- Event Details Input -->
+                <div class="flex-row" style="margin-bottom: 12px;">
+                    <div style="flex: 2;">
+                        <input type="text" id="event-name" class="input-control" placeholder="ชื่อ Event (เช่น ปาร์ตี้วันเกิด)" value="Giggling Platypus" oninput="updateUI()">
+                    </div>
+                    <div style="flex: 1.2;">
+                        <input type="date" id="event-date" class="input-control" onchange="updateUI()">
+                    </div>
+                </div>
+
+                <!-- Add Friends Input -->
+                <div class="input-group">
+                    <label>เพิ่มเพื่อนที่มาร่วมทาน</label>
+                    <div class="flex-row">
+                        <input type="text" id="friend-name-input" class="input-control" placeholder="พิมพ์ชื่อเพื่อน..." onkeypress="handleFriendKeyPress(event)">
+                        <button class="btn" onclick="addFriend()">+ เพิ่มเพื่อน</button>
+                    </div>
+                </div>
+
+                <!-- Friends Chip Container -->
+                <div class="friends-chips" id="friends-chips-container">
+                    <!-- Chip เพื่อนจะโชว์ที่นี่ -->
+                </div>
+            </div>
+
+            <!-- Add Food/Drink Items -->
+            <div class="section-box">
+                <div class="section-title">
+                    <span>รายการอาหาร & เครื่องดื่ม</span>
+                </div>
+
+                <div class="input-group">
+                    <div class="flex-row" style="margin-bottom: 8px;">
+                        <input type="text" id="item-name-input" class="input-control" placeholder="ชื่อรายการ (เช่น พิซซ่า)" style="flex: 2;">
+                        <select id="item-type-select" class="input-control" style="flex: 1;">
+                            <option value="food">Food</option>
+                            <option value="drink">Drink</option>
+                        </select>
+                    </div>
+                    <div class="flex-row">
+                        <input type="number" id="item-cost-input" class="input-control" placeholder="ราคา (บาท)" style="flex: 2;">
+                        <button class="btn" onclick="addItem()">+ เพิ่มรายการ</button>
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <div id="items-list-container">
+                    <!-- รายการจะโชว์ที่นี่ -->
+                </div>
+
+                <!-- Grand Total -->
+                <div class="grand-total-box">
+                    <span style="font-size: 14px; font-weight: 700; text-transform: uppercase;">Total Cost</span>
+                    <span class="price" id="grand-total-display">0 ฿</span>
+                </div>
+            </div>
+
+            <!-- 2. Divide Cost Per Person -->
+            <div class="section-box">
+                <div class="section-title">2. Divide Cost Per Person</div>
+                <div class="summary-grid" id="summary-grid-container">
+                    <!-- การ์ดสรุปยอดรายคนจะโชว์ที่นี่ -->
+                </div>
+            </div>
+
+            <!-- 3. Payment -->
+            <div class="section-box" style="margin-bottom: 0;">
+                <div class="section-title">3. Payment</div>
+                <div class="payment-box">
+                    <p style="font-size: 12px; color: #555;">สแกนเพื่อชำระเงิน / โอนเข้าบัญชี</p>
+                    <div class="qr-placeholder">
+                        [ วางรูป QR Code ]
+                    </div>
+                    <div style="font-weight: 700; font-size: 14px;">
+                        พร้อมเพย์: <span style="font-family: sans-serif;">081-234-5678</span><br>
+                        <span style="font-size: 12px; font-weight: normal; color: #666;">กสิกรไทย (Kasikornbank)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // กำหนดวันที่เริ่มต้นให้เป็นวันนี้
+        document.getElementById('event-date').valueAsDate = new Date();
+
+        // ชุดสไตล์สุ่มรูปภาพชิคน่ารักๆ จาก DiceBear API
+        const avatarStyles = ['lorelei', 'notionists', 'adventurer', 'fun-emoji', 'personas'];
+
+        // ข้อมูลหลัก
+        let friends = [
+            { id: 'f1', name: 'บอส', avatar: 'https://api.dicebear.com/7.x/lorelei/svg?seed=Boss' },
+            { id: 'f2', name: 'เมย์', avatar: 'https://api.dicebear.com/7.x/lorelei/svg?seed=May' },
+            { id: 'f3', name: 'เจ็ก', avatar: 'https://api.dicebear.com/7.x/lorelei/svg?seed=Jack' },
+            { id: 'f4', name: 'พลอย', avatar: 'https://api.dicebear.com/7.x/lorelei/svg?seed=Ploy' }
+        ];
+
+        let items = [
+            { id: 'i1', name: 'พิซซ่าหน้าต่าง', type: 'food', cost: 480, sharedBy: ['f1', 'f2', 'f3', 'f4'] },
+            { id: 'i2', name: 'ค็อกเทล (Cocktail)', type: 'drink', cost: 1360, sharedBy: ['f2', 'f4'] }
+        ];
+
+        // ฟังก์ชันเพิ่มเพื่อน
+        function addFriend() {
+            const input = document.getElementById('friend-name-input');
+            const name = input.value.trim();
+            if (!name) return;
+
+            const randomStyle = avatarStyles[Math.floor(Math.random() * avatarStyles.length)];
+            const newFriend = {
+                id: 'f_' + Date.now(),
+                name: name,
+                // สุ่มสร้างรูปสไตล์เกร๋ๆ
+                avatar: `https://api.dicebear.com/7.x/${randomStyle}/svg?seed=${encodeURIComponent(name)}`
+            };
+
+            friends.push(newFriend);
+            input.value = '';
+            
+            // โดย default ให้เพื่อนใหม่เลือกกินรายการที่มีอยู่แล้วอัตโนมัติ
+            items.forEach(item => item.sharedBy.push(newFriend.id));
+
+            updateUI();
+        }
+
+        function handleFriendKeyPress(e) {
+            if (e.key === 'Enter') addFriend();
+        }
+
+        // ฟังก์ชันลบเพื่อน
+        function removeFriend(friendId) {
+            friends = friends.filter(f => f.id !== friendId);
+            items.forEach(item => {
+                item.sharedBy = item.sharedBy.filter(id => id !== friendId);
+            });
+            updateUI();
+        }
+
+        // ฟังก์ชันเพิ่มรายการอาหาร/เครื่องดื่ม
+        function addItem() {
+            const nameInput = document.getElementById('item-name-input');
+            const costInput = document.getElementById('item-cost-input');
+            const typeSelect = document.getElementById('item-type-select');
+
+            const name = nameInput.value.trim();
+            const cost = parseFloat(costInput.value);
+            const type = typeSelect.value;
+
+            if (!name || isNaN(cost) || cost <= 0) return;
+
+            const newItem = {
+                id: 'i_' + Date.now(),
+                name: name,
+                type: type,
+                cost: cost,
+                sharedBy: friends.map(f => f.id) // เริ่มต้นให้ทุกคนหารรายการนี้
+            };
+
+            items.push(newItem);
+            nameInput.value = '';
+            costInput.value = '';
+            updateUI();
+        }
+
+        // ฟังก์ชันเปิด/ปิด เลือกคนหารในแต่ละรายการ
+        function toggleShare(itemId, friendId) {
+            const item = items.find(i => i.id === itemId);
+            if (item) {
+                const index = item.sharedBy.indexOf(friendId);
+                if (index > -1) {
+                    item.sharedBy.splice(index, 1);
+                } else {
+                    item.sharedBy.push(friendId);
+                }
+                updateUI();
+            }
+        }
+
+        // ฟังก์ชันลบรายการอาหาร
+        function removeItem(itemId) {
+            items = items.filter(i => i.id !== itemId);
+            updateUI();
+        }
+
+        // อัปเดตการแสดงผลทั้งหมดบนหน้าจอ
+        function updateUI() {
+            renderFriendsChips();
+            renderItemsList();
+            calculateAndRenderSummary();
+        }
+
+        // แสดง Chips เพื่อนที่เพิ่มเข้ามา
+        function renderFriendsChips() {
+            const container = document.getElementById('friends-chips-container');
+            container.innerHTML = friends.map(f => `
+                <div class="chip">
+                    <img src="${f.avatar}" alt="${f.name}">
+                    <span>${f.name}</span>
+                    <span class="remove-btn" onclick="removeFriend('${f.id}')">&times;</span>
+                </div>
+            `).join('');
+        }
+
+        // แสดงรายการอาหารพร้อม Avatar ปุ่มติ๊กเลือกคนกิน
+        function renderItemsList() {
+            const container = document.getElementById('items-list-container');
+            container.innerHTML = '';
+
+            items.forEach(item => {
+                const tagClass = item.type === 'food' ? 'tag-food' : 'tag-drink';
+                
+                const avatarsHTML = friends.map(f => {
+                    const isSelected = item.sharedBy.includes(f.id) ? 'selected' : '';
+                    return `
+                        <img src="${f.avatar}" 
+                             title="${f.name}" 
+                             class="avatar-toggle ${isSelected}" 
+                             onclick="toggleShare('${item.id}', '${f.id}')">
+                    `;
+                }).join('');
+
+                container.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-card-header">
+                            <div>
+                                <span>${item.name}</span>
+                                <span class="item-tag ${tagClass}">${item.type}</span>
+                            </div>
+                            <div>
+                                <span style="margin-right: 8px;">${item.cost.toLocaleString()} ฿</span>
+                                <span style="color:#ff4d4d; cursor:pointer; font-size:12px;" onclick="removeItem('${item.id}')">ลบ</span>
+                            </div>
+                        </div>
+                        <div class="select-sharers">
+                            ${avatarsHTML.length ? avatarsHTML : '<span style="font-size:11px; color:#aaa;">ยังไม่มีเพื่อนในระบบ</span>'}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // คำนวณราคาสรุปรายคน
+        function calculateAndRenderSummary() {
+            let grandTotal = 0;
+            const totals = {};
+
+            friends.forEach(f => {
+                totals[f.id] = { food: 0, drink: 0, total: 0 };
+            });
+
+            items.forEach(item => {
+                grandTotal += item.cost;
+                const sharersCount = item.sharedBy.length;
+
+                if (sharersCount > 0) {
+                    const costPerPerson = item.cost / sharersCount;
+                    item.sharedBy.forEach(fId => {
+                        if (totals[fId]) {
+                            if (item.type === 'food') {
+                                totals[fId].food += costPerPerson;
+                            } else {
+                                totals[fId].drink += costPerPerson;
+                            }
+                            totals[fId].total += costPerPerson;
+                        }
+                    });
+                }
+            });
+
+            document.getElementById('grand-total-display').innerText = `${grandTotal.toLocaleString()} ฿`;
+
+            const summaryContainer = document.getElementById('summary-grid-container');
+            summaryContainer.innerHTML = friends.map(f => {
+                const res = totals[f.id] || { food: 0, drink: 0, total: 0 };
+                return `
+                    <div class="person-card">
+                        <img src="${f.avatar}" alt="${f.name}">
+                        <div class="person-name">${f.name}</div>
+                        <div class="person-breakdown">
+                            Food: ${res.food.toFixed(0)} ฿<br>
+                            Drink: ${res.drink.toFixed(0)} ฿
+                        </div>
+                        <div class="person-total">${res.total.toFixed(0)} ฿</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // รันครั้งแรก
+        updateUI();
+    </script>
+</body>
+</html>
