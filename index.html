@@ -44,9 +44,10 @@
 
     /* Header Section */
     .app-header {
-      padding: 24px 20px 12px;
+      padding: 20px 20px 10px;
       text-align: center;
-      border-bottom: 2px solid var(--border-color);
+      background: #FFF;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .brand-title {
@@ -58,12 +59,12 @@
     }
 
     .event-title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--primary-red);
       text-transform: uppercase;
       line-height: 1.1;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .event-meta {
@@ -71,6 +72,32 @@
       color: var(--text-muted);
       margin-top: 4px;
       font-weight: 600;
+    }
+
+    /* Tab Bar Navigation */
+    .nav-tabs {
+      display: flex;
+      background: #EFE6D8;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .nav-tab-btn {
+      flex: 1;
+      padding: 10px 4px;
+      border: none;
+      background: none;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-tab-btn.active {
+      color: var(--primary-red);
+      border-bottom-color: var(--primary-red);
+      background: var(--bg-color);
     }
 
     /* Content Area */
@@ -193,7 +220,7 @@
     /* Buttons */
     .btn {
       width: 100%;
-      padding: 10px;
+      padding: 11px;
       border-radius: 10px;
       border: none;
       font-weight: 700;
@@ -205,13 +232,13 @@
     .btn-secondary { background: #2C1810; color: white; margin-top: 6px; }
     .btn-danger { background: #D32F2F; color: white; padding: 4px 8px; border-radius: 6px; font-size: 10px; }
 
-    /* Log Drawer / Modal */
+    /* Log Card */
     .log-card {
       background: #FFF;
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
     }
 
     .badge-type {
@@ -234,11 +261,18 @@
     <!-- Header -->
     <header class="app-header">
       <div class="brand-title">เสมียร อีเว๊นนนนนนนนน</div>
-      <div class="event-title" id="display-event-name">CREATE EVENT</div>
+      <div class="event-title" id="display-event-name">NEW EVENT</div>
       <div class="event-meta">
-        <span id="display-event-date">Please set date</span> • Khun.Nan
+        <span id="display-event-date">Select Date</span> • Khun.Nan
       </div>
     </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab-btn active" id="btn-tab-setup" onclick="switchTab('tab-setup')">1. Setup Event</button>
+      <button class="nav-tab-btn" id="btn-tab-summary" onclick="switchTab('tab-summary')">2. Summary</button>
+      <button class="nav-tab-btn" id="btn-tab-logs" onclick="switchTab('tab-logs')">3. Event Logs</button>
+    </nav>
 
     <div class="content-area">
       
@@ -247,11 +281,11 @@
         <div class="section-title">1. Event Info</div>
         <div class="form-group">
           <label>Event Name</label>
-          <input type="text" id="input-event-name" class="form-control" placeholder="e.g., Golden Hour Party">
+          <input type="text" id="input-event-name" class="form-control" placeholder="e.g., Golden Hour Party" onchange="updateHeaderInfo()">
         </div>
         <div class="form-group">
           <label>Date</label>
-          <input type="date" id="input-event-date" class="form-control">
+          <input type="date" id="input-event-date" class="form-control" onchange="updateHeaderInfo()">
         </div>
 
         <div class="section-title">2. Add Friends (DiceBear Avatars)</div>
@@ -265,7 +299,7 @@
         <div class="form-group">
           <label>Item Name & Type</label>
           <div class="row-inputs">
-            <input type="text" id="input-item-name" class="form-control" placeholder="e.g., Pizza / Wine">
+            <input type="text" id="input-item-name" class="form-control" placeholder="e.g., Pizza / Cocktail">
             <select id="input-item-type" class="form-control" style="width: 100px;">
               <option value="Food">Food</option>
               <option value="Drink">Drink</option>
@@ -284,17 +318,17 @@
         </div>
         <button class="btn btn-primary" onclick="addItem()">+ Add Item</button>
 
-        <div class="section-title">Added Items</div>
+        <div class="section-title">Added Items List</div>
         <div id="items-setup-list" style="margin-bottom: 15px;"></div>
 
-        <button class="btn btn-secondary" style="padding: 14px; font-size: 15px;" onclick="calculateAndShowSummary()">🚀 Summary & Calculate Event</button>
+        <button class="btn btn-secondary" style="padding: 14px; font-size: 15px;" onclick="calculateAndShowSummary()">🚀 คำนวณยอดเงิน & ไปหน้า สรุป</button>
       </div>
 
       <!-- TAB 2: EVENT SUMMARY -->
       <div id="tab-summary" class="view-tab">
         <!-- Top Spender -->
         <div class="top-spender-card">
-          <img id="top-spender-img" class="top-spender-avatar" src="" alt="Top Spender">
+          <img id="top-spender-img" class="top-spender-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=placeholder" alt="Top Spender">
           <div>
             <span class="top-spender-badge">👑 Top Spender</span>
             <div class="top-spender-name" id="top-spender-name">-</div>
@@ -312,29 +346,39 @@
         </div>
 
         <button class="btn btn-primary" onclick="finishAndSaveEvent()">✅ ปิดจบ สรุป Event (Save Log)</button>
-        <button class="btn btn-secondary" onclick="switchTab('tab-setup')">✏️ Edit Event</button>
+        <button class="btn btn-secondary" onclick="switchTab('tab-setup')">✏️ กลับไปแก้ไขรายการ</button>
       </div>
 
       <!-- TAB 3: SAVED LOGS -->
       <div id="tab-logs" class="view-tab">
         <div class="section-title">Saved Event Logs</div>
         <div id="logs-container"></div>
-        <button class="btn btn-secondary" onclick="switchTab('tab-setup')">+ Create New Event</button>
+        <button class="btn btn-primary" style="margin-top: 15px; padding: 14px;" onclick="startNewEvent()">➕ Create New Event (สร้างอีเวนต์ใหม่)</button>
       </div>
 
     </div>
   </div>
 
   <script>
-    // State Data
+    // Global State
     let friends = [];
     let items = [];
     let selectedFriendsForItem = [];
 
-    // Switch View Tabs
+    // Switch View Tabs Function
     function switchTab(tabId) {
       document.querySelectorAll('.view-tab').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(el => el.classList.remove('active'));
+      
       document.getElementById(tabId).classList.add('active');
+      document.getElementById(`btn-${tabId}`).classList.add('active');
+    }
+
+    function updateHeaderInfo() {
+      const name = document.getElementById('input-event-name').value.trim() || 'NEW EVENT';
+      const date = document.getElementById('input-event-date').value || 'Select Date';
+      document.getElementById('display-event-name').innerText = name;
+      document.getElementById('display-event-date').innerText = date;
     }
 
     // Add Friend with DiceBear Avatar
@@ -343,8 +387,7 @@
       const name = nameInput.value.trim();
       if (!name) return alert('กรุณากรอกชื่อเพื่อน');
 
-      // Random DiceBear Chic Avatar
-      const seed = encodeURIComponent(name + Math.random());
+      const seed = encodeURIComponent(name + '_' + Math.random());
       const avatarUrl = `https://api.dicebear.com/7.x/personas/svg?seed=${seed}`;
 
       friends.push({ id: Date.now(), name, avatar: avatarUrl });
@@ -355,6 +398,7 @@
 
     function removeFriend(id) {
       friends = friends.filter(f => f.id !== id);
+      selectedFriendsForItem = selectedFriendsForItem.filter(fId => fId !== id);
       renderFriendsSetup();
       renderItemFriendsSelector();
     }
@@ -398,7 +442,7 @@
       renderItemFriendsSelector();
     }
 
-    // Add Item & Split
+    // Add Item & Split Calculation
     function addItem() {
       const name = document.getElementById('input-item-name').value.trim();
       const type = document.getElementById('input-item-type').value;
@@ -415,7 +459,6 @@
         sharedWith: [...selectedFriendsForItem]
       });
 
-      // Clear inputs
       document.getElementById('input-item-name').value = '';
       document.getElementById('input-item-price').value = '';
       selectedFriendsForItem = [];
@@ -446,15 +489,10 @@
 
     // Calculation Engine
     function calculateAndShowSummary() {
-      const eventName = document.getElementById('input-event-name').value.trim() || 'UNNAMED EVENT';
-      const eventDate = document.getElementById('input-event-date').value || 'N/A';
-
       if (friends.length === 0) return alert('กรุณาเพิ่มเพื่อนอย่างน้อย 1 คน');
 
-      document.getElementById('display-event-name').innerText = eventName;
-      document.getElementById('display-event-date').innerText = eventDate;
+      updateHeaderInfo();
 
-      // Calculate totals per friend
       const friendTotals = friends.map(f => {
         let food = 0;
         let drink = 0;
@@ -471,17 +509,21 @@
           ...f,
           food,
           drink,
-          total: food + drink,
-          paid: false
+          total: food + drink
         };
       });
 
       // Find Top Spender
-      let topSpender = friendTotals.reduce((prev, current) => (prev.total > current.total) ? prev : current, friendTotals[0]);
+      let topSpender = friendTotals.reduce((prev, current) => (prev && prev.total > current.total) ? prev : current, null);
 
-      document.getElementById('top-spender-name').innerText = topSpender ? topSpender.name : '-';
-      document.getElementById('top-spender-amount').innerText = topSpender ? `฿${topSpender.total.toFixed(2)}` : '฿0.00';
-      document.getElementById('top-spender-img').src = topSpender ? topSpender.avatar : '';
+      if (topSpender && topSpender.total > 0) {
+        document.getElementById('top-spender-name').innerText = topSpender.name;
+        document.getElementById('top-spender-amount').innerText = `฿${topSpender.total.toFixed(2)}`;
+        document.getElementById('top-spender-img').src = topSpender.avatar;
+      } else {
+        document.getElementById('top-spender-name').innerText = '-';
+        document.getElementById('top-spender-amount').innerText = '฿0.00';
+      }
 
       // Render Summary Friend Cards
       const container = document.getElementById('summary-friends-list');
@@ -515,11 +557,10 @@
       }
     }
 
-    // Save Log and Finish
+    // Save Log and Finish Event
     function finishAndSaveEvent() {
       const name = document.getElementById('display-event-name').innerText;
       const date = document.getElementById('display-event-date').innerText;
-      
       const totalAmount = items.reduce((sum, i) => sum + i.price, 0);
 
       const logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
@@ -534,16 +575,24 @@
       localStorage.setItem('event_logs', JSON.stringify(logs));
       alert('บันทึก Log เรียบร้อยแล้ว!');
       renderLogs();
-      
-      // Reset Form for next event
+      switchTab('tab-logs');
+    }
+
+    // Start New Event (Reset Form)
+    function startNewEvent() {
       friends = [];
       items = [];
       selectedFriendsForItem = [];
+      
       document.getElementById('input-event-name').value = '';
+      document.getElementById('input-event-date').value = '';
+      updateHeaderInfo();
+
       renderFriendsSetup();
       renderItemsSetup();
-      
-      switchTab('tab-logs');
+      renderItemFriendsSelector();
+
+      switchTab('tab-setup');
     }
 
     function renderLogs() {
@@ -551,7 +600,7 @@
       const container = document.getElementById('logs-container');
 
       if (logs.length === 0) {
-        container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;">No event logs yet</div>';
+        container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;">No event logs saved yet.</div>';
         return;
       }
 
@@ -568,7 +617,7 @@
       `).join('');
     }
 
-    // Initial Setup
+    // Initial Load
     renderLogs();
   </script>
 </body>
