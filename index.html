@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Splitmate - Golden Hour Splitter</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <title>เสมียร อีเว๊นนนนนนนนน</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #FAF6EF;
@@ -22,11 +22,11 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Kanit', sans-serif;
     }
 
     body {
-      background-color: #1A1A1A;
+      background-color: #121212;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -34,75 +34,77 @@
       padding: 20px 0;
     }
 
-    /* Mobile Web Container */
     .app-container {
       width: 100%;
-      max-width: 430px;
+      max-width: 440px;
       background-color: var(--bg-color);
-      min-height: 844px;
-      border-radius: 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      min-height: 850px;
+      border-radius: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      position: relative;
     }
 
     /* Header */
     .app-header {
-      padding: 24px 20px 10px;
+      padding: 24px 20px 12px;
       text-align: center;
+      background: linear-gradient(180deg, #FFF9F2 0%, var(--bg-color) 100%);
     }
 
-    .brand-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--primary-red);
-      letter-spacing: 1px;
-    }
-
-    .event-title {
-      font-size: 26px;
+    .main-title {
+      font-size: 24px;
       font-weight: 800;
       color: var(--primary-red);
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .event-title-input {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-red);
+      text-align: center;
+      border: none;
+      background: transparent;
+      width: 100%;
+      outline: none;
+      margin-top: 4px;
     }
 
     .event-meta {
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: 6px;
-      font-weight: 600;
+      margin-top: 4px;
+      font-weight: 400;
     }
 
-    /* Main Content Area */
+    /* Main Content */
     .content-area {
       flex: 1;
       padding: 16px 20px;
       overflow-y: auto;
     }
 
-    /* Top Spender Section */
+    /* Top Spender Card */
     .top-spender-card {
-      background-color: var(--primary-red);
+      background: linear-gradient(135deg, var(--primary-red) 0%, var(--accent-red) 100%);
       color: white;
       border-radius: 18px;
-      padding: 16px;
+      padding: 14px 18px;
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 16px rgba(163, 29, 29, 0.2);
+      margin-bottom: 20px;
+      box-shadow: 0 8px 16px rgba(163, 29, 29, 0.25);
     }
 
     .top-spender-avatar {
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      object-fit: cover;
+      background-color: #FFF;
       border: 3px solid #FFF;
     }
 
@@ -112,18 +114,17 @@
 
     .top-spender-badge {
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+      font-weight: 600;
       background-color: rgba(255, 255, 255, 0.2);
-      padding: 3px 8px;
+      padding: 2px 8px;
       border-radius: 10px;
       display: inline-block;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .top-spender-name {
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
     }
 
     .top-spender-amount {
@@ -132,14 +133,49 @@
       color: #FFD700;
     }
 
-    /* Section Headers */
-    .section-title {
-      font-size: 14px;
-      font-weight: 800;
+    /* Input Add Friend Section */
+    .add-friend-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .card-label {
+      font-size: 13px;
+      font-weight: 600;
       color: var(--primary-red);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .input-field {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: var(--primary-red);
+    }
+
+    .btn-add {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
     }
 
     /* Friends List */
@@ -147,7 +183,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .friend-card {
@@ -161,10 +197,10 @@
     }
 
     .friend-avatar {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      object-fit: cover;
+      background-color: #F0F0F0;
     }
 
     .friend-details {
@@ -172,38 +208,44 @@
     }
 
     .friend-name {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 600;
       color: var(--text-dark);
       margin-bottom: 4px;
     }
 
-    .item-breakdown {
+    .amount-inputs {
       display: flex;
-      gap: 8px;
+      gap: 6px;
+      align-items: center;
       font-size: 12px;
-      color: var(--text-muted);
     }
 
-    .total-amount {
+    .amount-inputs input {
+      width: 60px;
+      padding: 4px 6px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .total-badge {
       font-size: 13px;
       font-weight: 800;
       color: var(--primary-red);
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
-    /* Status Checkbox Button */
+    /* Status Button */
     .status-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      user-select: none;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 12px;
-      font-weight: 700;
-      transition: all 0.2s ease;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      transition: all 0.2s;
     }
 
     .status-btn.pending {
@@ -218,75 +260,48 @@
       border: 1px solid #C8E6C9;
     }
 
-    .status-btn input {
-      display: none;
-    }
-
-    /* Payment Section */
+    /* PromptPay Card */
     .payment-card {
       background-color: var(--card-bg);
       border: 2px dashed var(--primary-red);
-      border-radius: 18px;
-      padding: 16px;
+      border-radius: 16px;
+      padding: 14px;
       text-align: center;
       margin-bottom: 20px;
     }
 
-    .payment-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    .payment-clerk {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .qr-placeholder {
-      width: 120px;
-      height: 120px;
-      background-color: #EEE;
-      margin: 0 auto;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      border: 1px solid #DDD;
-    }
-
-    /* Event Logs & Actions */
-    .action-btn {
+    /* Finish & Reset Button */
+    .btn-finish {
       width: 100%;
-      background-color: var(--primary-red);
+      background-color: #2E7D32;
       color: white;
       border: none;
-      padding: 12px;
+      padding: 14px;
       border-radius: 12px;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 600;
+      font-size: 15px;
       cursor: pointer;
-      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
+      margin-bottom: 20px;
     }
 
+    /* Logs Section */
     .logs-container {
-      background: #FFF;
+      background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 10px;
-      max-height: 120px;
+      padding: 12px;
+      max-height: 150px;
       overflow-y: auto;
-      font-size: 12px;
     }
 
     .log-item {
       display: flex;
       justify-content: space-between;
-      padding: 6px 0;
+      align-items: center;
+      padding: 8px 0;
       border-bottom: 1px solid #F0F0F0;
+      font-size: 12px;
     }
     .log-item:last-child { border-bottom: none; }
   </style>
@@ -294,168 +309,223 @@
 <body>
 
   <div class="app-container">
-    <!-- App Header -->
+    <!-- Header -->
     <header class="app-header">
-      <div class="brand-title">SPLITMATE</div>
-      <div class="event-title" id="event-title">GOLDEN HOUR DINNER</div>
+      <div class="main-title">เสมียร อีเว๊นนนนนนนนน</div>
+      <input type="text" id="event-title" class="event-title-input" value="GOLDEN HOUR DINNER">
       <div class="event-meta">
-        <span id="event-date">Oct 24, 2026</span> • Clerk: <span id="event-clerk">Alex</span>
+        <span id="event-date"></span> • Khun.Nan
       </div>
     </header>
 
     <div class="content-area">
       <!-- Top Spender Highlight -->
       <div class="top-spender-card">
-        <img id="top-spender-img" class="top-spender-avatar" src="https://i.pravatar.cc/150?img=3" alt="Top Spender">
+        <img id="top-spender-img" class="top-spender-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=default" alt="Top Spender">
         <div class="top-spender-info">
           <span class="top-spender-badge">👑 Top Spender</span>
-          <div class="top-spender-name" id="top-spender-name">-</div>
-          <div class="top-spender-amount" id="top-spender-amount">฿0.00</div>
+          <div class="top-spender-name" id="top-spender-name">ยังไม่มีข้อมูล</div>
+          <div class="top-spender-amount" id="top-spender-amount">฿0</div>
+        </div>
+      </div>
+
+      <!-- Add Friend Form -->
+      <div class="add-friend-card">
+        <span class="card-label">➕ เพิ่มรายชื่อเพื่อนร่วมทาน</span>
+        <div class="input-row">
+          <input type="text" id="new-friend-name" class="input-field" placeholder="ชื่อเพื่อน..." style="flex:1;">
+          <button class="btn-add" onclick="addFriend()">เพิ่มเพื่อน</button>
         </div>
       </div>
 
       <!-- Friends List -->
-      <div class="section-title">Friends Breakdown</div>
+      <span class="card-label">รายการค่าใช้จ่ายรายคน</span>
       <div class="friend-list" id="friend-list">
-        <!-- JS will populate cards here -->
+        <!-- Friends Render Here -->
       </div>
 
-      <!-- Payment Section -->
+      <!-- PromptPay Payment Card -->
       <div class="payment-card">
-        <div class="payment-title">Scan to Pay via PromptPay</div>
-        <div class="payment-clerk">Account: 081-234-5678 (Alex)</div>
-        <div class="qr-placeholder">
-          PromptPay QR Code
-        </div>
+        <div style="font-weight: 600; font-size: 14px; color: var(--text-dark);">ช่องทางชำระเงิน (PromptPay)</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">พร้อมเพย์: 081-234-5678 (Khun.Nan)</div>
       </div>
 
-      <!-- Event Log Controls -->
-      <button class="action-btn" onclick="saveEventLog()">💾 Save Event Log</button>
-      
-      <div class="section-title" style="margin-top: 15px;">Saved Event Logs</div>
+      <!-- Finish & Log Action -->
+      <button class="btn-finish" onclick="finishAndResetEvent()">✅ ปิดจบสรุป Event & เริ่มใหม่</button>
+
+      <!-- History Logs -->
+      <span class="card-label">📂 บันทึก Log Event ที่ผ่านมา</span>
       <div class="logs-container" id="logs-list">
-        <div style="color: var(--text-muted); text-align: center;">No logs saved yet.</div>
+        <div style="color: var(--text-muted); text-align: center; font-size: 12px;">ยังไม่มี Log บันทึก</div>
       </div>
     </div>
   </div>
 
   <script>
-    // Sample Data
-    const eventData = {
-      title: "GOLDEN HOUR DINNER",
-      date: "Oct 24, 2026",
-      clerk: "Alex",
-      friends: [
-        { id: 1, name: "Sarah", avatar: "https://i.pravatar.cc/150?img=5", food: 450, drink: 200, paid: false },
-        { id: 2, name: "David", avatar: "https://i.pravatar.cc/150?img=12", food: 850, drink: 400, paid: true },
-        { id: 3, name: "Emma", avatar: "https://i.pravatar.cc/150?img=9", food: 300, drink: 150, paid: false },
-        { id: 4, name: "Michael", avatar: "https://i.pravatar.cc/150?img=11", food: 500, drink: 250, paid: false }
-      ]
-    };
+    // System State
+    let friends = [];
 
-    // Render Friends List and Calculate Breakdown
-    function renderFriends() {
-      const friendListEl = document.getElementById('friend-list');
-      friendListEl.innerHTML = '';
+    // Set Default Date (Today)
+    const today = new Date();
+    const dateOptions = { month: 'short', day: 'numeric', year: 'numeric' };
+    document.getElementById('event-date').innerText = today.toLocaleDateString('en-US', dateOptions);
+
+    // Random Cartoon Avatar Generator (DiceBear API)
+    function getRandomAvatar(seed) {
+      const styles = ['bottts', 'fun-emoji', 'adventurer', 'big-smile'];
+      const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+      return `https://api.dicebear.com/7.x/${randomStyle}/svg?seed=${encodeURIComponent(seed)}`;
+    }
+
+    // Add Friend
+    function addFriend() {
+      const nameInput = document.getElementById('new-friend-name');
+      const name = nameInput.value.trim();
+
+      if (!name) {
+        alert('กรุณากรอกชื่อเพื่อนก่อนครับ');
+        return;
+      }
+
+      const newFriend = {
+        id: Date.now(),
+        name: name,
+        avatar: getRandomAvatar(name + Date.now()),
+        food: 0,
+        drink: 0,
+        paid: false
+      };
+
+      friends.push(newFriend);
+      nameInput.value = '';
+      render();
+    }
+
+    // Update Amounts
+    function updateAmount(id, field, value) {
+      const friend = friends.find(f => f.id === id);
+      if (friend) {
+        friend[field] = parseFloat(value) || 0;
+        render();
+      }
+    }
+
+    // Toggle Paid Status
+    function togglePaid(id) {
+      const friend = friends.find(f => f.id === id);
+      if (friend) {
+        friend.paid = !friend.paid;
+        render();
+      }
+    }
+
+    // Main Render Function
+    function render() {
+      const listEl = document.getElementById('friend-list');
+      listEl.innerHTML = '';
 
       let topSpender = null;
       let maxTotal = -1;
 
-      eventData.friends.forEach(friend => {
+      if (friends.length === 0) {
+        listEl.innerHTML = '<div style="color: var(--text-muted); text-align: center; font-size: 12px; padding: 10px;">ยังไม่มีรายชื่อเพื่อน กรอกเพิ่มด้านบนได้เลยครับ</div>';
+      }
+
+      friends.forEach(friend => {
         const total = friend.food + friend.drink;
 
-        // Find Top Spender
-        if (total > maxTotal) {
+        // Check Top Spender
+        if (total > maxTotal && total > 0) {
           maxTotal = total;
           topSpender = { ...friend, total };
         }
 
-        // Card Element
         const card = document.createElement('div');
         card.className = 'friend-card';
         card.innerHTML = `
           <img class="friend-avatar" src="${friend.avatar}" alt="${friend.name}">
           <div class="friend-details">
             <div class="friend-name">${friend.name}</div>
-            <div class="item-breakdown">
-              <span>Food: ฿${friend.food}</span> | 
-              <span>Drink: ฿${friend.drink}</span>
+            <div class="amount-inputs">
+              Food: <input type="number" value="${friend.food || ''}" placeholder="0" oninput="updateAmount(${friend.id}, 'food', this.value)">
+              Drink: <input type="number" value="${friend.drink || ''}" placeholder="0" oninput="updateAmount(${friend.id}, 'drink', this.value)">
             </div>
-            <div class="total-amount">Total: ฿${total.toLocaleString()}</div>
+            <div class="total-badge">Total: ฿${total.toLocaleString()}</div>
           </div>
-          <label class="status-btn ${friend.paid ? 'paid' : 'pending'}" id="status-label-${friend.id}">
-            <input type="checkbox" ${friend.paid ? 'checked' : ''} onchange="togglePaid(${friend.id})">
-            <span id="status-text-${friend.id}">${friend.paid ? '✓ Paid' : '⏳ Pending'}</span>
-          </label>
+          <button class="status-btn ${friend.paid ? 'paid' : 'pending'}" onclick="togglePaid(${friend.id})">
+            ${friend.paid ? '✓ Paid' : 'Pending'}
+          </button>
         `;
-        friendListEl.appendChild(card);
+        listEl.appendChild(card);
       });
 
-      // Update Top Spender Card
+      // Update Top Spender Display
       if (topSpender) {
         document.getElementById('top-spender-name').innerText = topSpender.name;
         document.getElementById('top-spender-amount').innerText = `฿${topSpender.total.toLocaleString()}`;
         document.getElementById('top-spender-img').src = topSpender.avatar;
+      } else {
+        document.getElementById('top-spender-name').innerText = 'ยังไม่มีข้อมูล';
+        document.getElementById('top-spender-amount').innerText = '฿0';
+        document.getElementById('top-spender-img').src = 'https://api.dicebear.com/7.x/bottts/svg?seed=default';
       }
     }
 
-    // Toggle Checkbox Status (Pending / Paid)
-    function togglePaid(friendId) {
-      const friend = eventData.friends.find(f => f.id === friendId);
-      if (friend) {
-        friend.paid = !friend.paid;
-        
-        const label = document.getElementById(`status-label-${friendId}`);
-        const textSpan = document.getElementById(`status-text-${friendId}`);
-
-        if (friend.paid) {
-          label.className = 'status-btn paid';
-          textSpan.innerText = '✓ Paid';
-        } else {
-          label.className = 'status-btn pending';
-          textSpan.innerText = '⏳ Pending';
-        }
+    // Finish Event & Save to LocalStorage Logs
+    function finishAndResetEvent() {
+      if (friends.length === 0) {
+        alert('ยังไม่มีข้อมูลเพื่อนใน Event นี้ครับ');
+        return;
       }
-    }
 
-    // Save Event Logs to LocalStorage
-    function saveEventLog() {
-      let logs = JSON.parse(localStorage.getItem('splitmate_logs') || '[]');
+      const eventTitle = document.getElementById('event-title').value || 'UNNAMED EVENT';
+      const grandTotal = friends.reduce((sum, f) => sum + f.food + f.drink, 0);
+
+      // Save Log
+      let logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
       const newLog = {
-        title: eventData.title,
-        date: eventData.date,
-        totalAmount: eventData.friends.reduce((sum, f) => sum + f.food + f.drink, 0),
-        savedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        title: eventTitle,
+        date: document.getElementById('event-date').innerText,
+        total: grandTotal,
+        peopleCount: friends.length,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
+
       logs.unshift(newLog);
-      localStorage.setItem('splitmate_logs', JSON.stringify(logs));
+      localStorage.setItem('event_logs', JSON.stringify(logs));
+
+      alert(`สรุป Event "${eventTitle}" เรียบร้อยแล้ว!\nยอดรวมทั้งสิ้น: ฿${grandTotal.toLocaleString()}`);
+
+      // Reset State for Next Event
+      friends = [];
+      document.getElementById('event-title').value = 'NEXT EVENT DINNER';
+      render();
       renderLogs();
-      alert('Event log saved successfully!');
     }
 
     // Render Saved Logs
     function renderLogs() {
       const logsEl = document.getElementById('logs-list');
-      let logs = JSON.parse(localStorage.getItem('splitmate_logs') || '[]');
-      
+      let logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
+
       if (logs.length === 0) {
-        logsEl.innerHTML = '<div style="color: var(--text-muted); text-align: center;">No logs saved yet.</div>';
+        logsEl.innerHTML = '<div style="color: var(--text-muted); text-align: center; font-size: 12px;">ยังไม่มี Log บันทึก</div>';
         return;
       }
 
       logsEl.innerHTML = logs.map(log => `
         <div class="log-item">
           <div>
-            <strong>${log.title}</strong>
-            <div style="font-size: 10px; color: var(--text-muted);">${log.date} at ${log.savedAt}</div>
+            <strong>${log.title}</strong> (${log.peopleCount} คน)
+            <div style="font-size: 10px; color: var(--text-muted);">${log.date} • ${log.timestamp}</div>
           </div>
-          <div style="font-weight: 700; color: var(--primary-red);">฿${log.totalAmount.toLocaleString()}</div>
+          <div style="font-weight: 700; color: var(--primary-red);">฿${log.total.toLocaleString()}</div>
         </div>
       `).join('');
     }
 
-    // Initial Load
-    renderFriends();
+    // Initialize
+    render();
     renderLogs();
   </script>
 </body>
