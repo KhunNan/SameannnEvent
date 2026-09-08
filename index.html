@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>เสมียร อีเว๊นนนนนนนนน - Splitmate</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,1000;1,1000&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #FAF6EF;
@@ -44,7 +44,7 @@
 
     /* Header Section */
     .app-header {
-      padding: 20px 20px 10px;
+      padding: 18px 20px 10px;
       text-align: center;
       background: #FFF;
       border-bottom: 1px solid var(--border-color);
@@ -59,7 +59,7 @@
     }
 
     .event-title {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
       color: var(--primary-red);
       text-transform: uppercase;
@@ -68,7 +68,7 @@
     }
 
     .event-meta {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
       margin-top: 4px;
       font-weight: 600;
@@ -83,10 +83,10 @@
 
     .nav-tab-btn {
       flex: 1;
-      padding: 10px 4px;
+      padding: 10px 2px;
       border: none;
       background: none;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
@@ -113,7 +113,7 @@
       color: var(--primary-red);
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin: 16px 0 10px;
+      margin: 14px 0 8px;
     }
 
     /* Forms & Inputs */
@@ -131,7 +131,7 @@
 
     .row-inputs { display: flex; gap: 8px; }
 
-    /* Top Spender Highlight */
+    /* Top Spender Card */
     .top-spender-card {
       background-color: var(--primary-red);
       color: white;
@@ -140,7 +140,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       box-shadow: 0 6px 14px rgba(163, 29, 29, 0.25);
     }
 
@@ -269,9 +269,10 @@
 
     <!-- Navigation Tabs -->
     <nav class="nav-tabs">
-      <button class="nav-tab-btn active" id="btn-tab-setup" onclick="switchTab('tab-setup')">1. Setup Event</button>
+      <button class="nav-tab-btn active" id="btn-tab-setup" onclick="switchTab('tab-setup')">1. Setup</button>
       <button class="nav-tab-btn" id="btn-tab-summary" onclick="switchTab('tab-summary')">2. Summary</button>
-      <button class="nav-tab-btn" id="btn-tab-logs" onclick="switchTab('tab-logs')">3. Event Logs</button>
+      <button class="nav-tab-btn" id="btn-tab-logs" onclick="switchTab('tab-logs')">3. Logs</button>
+      <button class="nav-tab-btn" id="btn-tab-alltime" onclick="switchTab('tab-alltime')">4. All-Time Log</button>
     </nav>
 
     <div class="content-area">
@@ -299,7 +300,7 @@
         <div class="form-group">
           <label>Item Name & Type</label>
           <div class="row-inputs">
-            <input type="text" id="input-item-name" class="form-control" placeholder="e.g., Pizza / Cocktail">
+            <input type="text" id="input-item-name" class="form-control" placeholder="e.g., Pizza / Beer">
             <select id="input-item-type" class="form-control" style="width: 100px;">
               <option value="Food">Food</option>
               <option value="Drink">Drink</option>
@@ -330,7 +331,7 @@
         <div class="top-spender-card">
           <img id="top-spender-img" class="top-spender-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=placeholder" alt="Top Spender">
           <div>
-            <span class="top-spender-badge">👑 Top Spender</span>
+            <span class="top-spender-badge">👑 Event Top Spender</span>
             <div class="top-spender-name" id="top-spender-name">-</div>
             <div class="top-spender-amount" id="top-spender-amount">฿0.00</div>
           </div>
@@ -351,9 +352,28 @@
 
       <!-- TAB 3: SAVED LOGS -->
       <div id="tab-logs" class="view-tab">
-        <div class="section-title">Saved Event Logs</div>
+        <div class="section-title">Saved Event Logs History</div>
         <div id="logs-container"></div>
-        <button class="btn btn-primary" style="margin-top: 15px; padding: 14px;" onclick="startNewEvent()">➕ Create New Event (สร้างอีเวนต์ใหม่)</button>
+        
+        <button class="btn btn-primary" style="margin-top: 15px; padding: 14px;" onclick="startNewEvent()">🏠 กลับหน้าหลัก (Home / Create Event)</button>
+        <button class="btn btn-secondary" onclick="switchTab('tab-alltime')">📊 ดูสรุปยอดรวม All-Time ทุกคน</button>
+      </div>
+
+      <!-- TAB 4: ALL-TIME SPENDER SUMMARY -->
+      <div id="tab-alltime" class="view-tab">
+        <div class="top-spender-card" style="background: #2C1810;">
+          <img id="alltime-top-img" class="top-spender-avatar" src="https://api.dicebear.com/7.x/personas/svg?seed=champion" alt="All-Time Top">
+          <div>
+            <span class="top-spender-badge" style="background: #FFD700; color: #000; font-weight: 800;">🏆 ALL-TIME TOP SPENDER</span>
+            <div class="top-spender-name" id="alltime-top-name">-</div>
+            <div class="top-spender-amount" id="alltime-top-amount">฿0.00</div>
+          </div>
+        </div>
+
+        <div class="section-title">สรุปรวมค่าใช้จ่ายสะสมของทุกคน</div>
+        <div id="alltime-list-container"></div>
+
+        <button class="btn btn-primary" style="margin-top: 15px; padding: 14px;" onclick="startNewEvent()">🏠 กลับหน้าหลัก (Home)</button>
       </div>
 
     </div>
@@ -364,6 +384,7 @@
     let friends = [];
     let items = [];
     let selectedFriendsForItem = [];
+    let currentCalculatedData = [];
 
     // Switch View Tabs Function
     function switchTab(tabId) {
@@ -372,6 +393,10 @@
       
       document.getElementById(tabId).classList.add('active');
       document.getElementById(`btn-${tabId}`).classList.add('active');
+
+      if(tabId === 'tab-alltime') {
+        renderAllTimeSummary();
+      }
     }
 
     function updateHeaderInfo() {
@@ -493,7 +518,7 @@
 
       updateHeaderInfo();
 
-      const friendTotals = friends.map(f => {
+      currentCalculatedData = friends.map(f => {
         let food = 0;
         let drink = 0;
 
@@ -513,8 +538,8 @@
         };
       });
 
-      // Find Top Spender
-      let topSpender = friendTotals.reduce((prev, current) => (prev && prev.total > current.total) ? prev : current, null);
+      // Find Event Top Spender
+      let topSpender = currentCalculatedData.reduce((prev, current) => (prev && prev.total > current.total) ? prev : current, null);
 
       if (topSpender && topSpender.total > 0) {
         document.getElementById('top-spender-name').innerText = topSpender.name;
@@ -527,7 +552,7 @@
 
       // Render Summary Friend Cards
       const container = document.getElementById('summary-friends-list');
-      container.innerHTML = friendTotals.map(f => `
+      container.innerHTML = currentCalculatedData.map(f => `
         <div class="friend-card">
           <img class="friend-avatar" src="${f.avatar}">
           <div class="friend-details">
@@ -569,11 +594,11 @@
         name,
         date,
         totalAmount,
-        friendCount: friends.length
+        friendDetails: currentCalculatedData
       });
 
       localStorage.setItem('event_logs', JSON.stringify(logs));
-      alert('บันทึก Log เรียบร้อยแล้ว!');
+      alert('บันทึก Log และปิดจบ Event เรียบร้อยแล้ว!');
       renderLogs();
       switchTab('tab-logs');
     }
@@ -583,6 +608,7 @@
       friends = [];
       items = [];
       selectedFriendsForItem = [];
+      currentCalculatedData = [];
       
       document.getElementById('input-event-name').value = '';
       document.getElementById('input-event-date').value = '';
@@ -611,7 +637,65 @@
             <span>฿${l.totalAmount.toLocaleString()}</span>
           </div>
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-            Date: ${l.date} | Friends: ${l.friendCount} people
+            Date: ${l.date} | Friends: ${l.friendDetails ? l.friendDetails.length : 0} people
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // All-Time Summary Calculation across ALL Events
+    function renderAllTimeSummary() {
+      const logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
+      const container = document.getElementById('alltime-list-container');
+
+      if (logs.length === 0) {
+        container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;">ยังไม่มีประวัติ Event ให้คำนวณ</div>';
+        document.getElementById('alltime-top-name').innerText = '-';
+        document.getElementById('alltime-top-amount').innerText = '฿0.00';
+        return;
+      }
+
+      const summaryMap = {};
+
+      logs.forEach(log => {
+        if (log.friendDetails) {
+          log.friendDetails.forEach(f => {
+            const key = f.name.toLowerCase().trim();
+            if (!summaryMap[key]) {
+              summaryMap[key] = {
+                name: f.name,
+                avatar: f.avatar,
+                totalFood: 0,
+                totalDrink: 0,
+                grandTotal: 0,
+                eventCount: 0
+              };
+            }
+            summaryMap[key].totalFood += f.food;
+            summaryMap[key].totalDrink += f.drink;
+            summaryMap[key].grandTotal += f.total;
+            summaryMap[key].eventCount += 1;
+          });
+        }
+      });
+
+      const allTimeList = Object.values(summaryMap).sort((a, b) => b.grandTotal - a.grandTotal);
+
+      // Set All-Time Top Spender
+      if (allTimeList.length > 0) {
+        const top = allTimeList[0];
+        document.getElementById('alltime-top-name').innerText = top.name;
+        document.getElementById('alltime-top-amount').innerText = `฿${top.grandTotal.toFixed(2)}`;
+        document.getElementById('alltime-top-img').src = top.avatar;
+      }
+
+      container.innerHTML = allTimeList.map(person => `
+        <div class="friend-card">
+          <img class="friend-avatar" src="${person.avatar}">
+          <div class="friend-details">
+            <div class="friend-name">${person.name} <span style="font-size: 10px; font-weight: normal; color: var(--text-muted);">(${person.eventCount} events)</span></div>
+            <div class="item-breakdown">Food: ฿${person.totalFood.toFixed(2)} | Drink: ฿${person.totalDrink.toFixed(2)}</div>
+            <div class="total-amount">Grand Total: ฿${person.grandTotal.toFixed(2)}</div>
           </div>
         </div>
       `).join('');
