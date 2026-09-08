@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>เสมียร อีเว๊นนนนนนนนน</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <title>เสมียร อีเว๊นนนนนนนนน - Splitmate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #FAF6EF;
@@ -18,12 +18,7 @@
       --orange-pending: #E65100;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Kanit', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
 
     body {
       background-color: #121212;
@@ -44,60 +39,82 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
 
-    /* Header */
+    /* Header Section */
     .app-header {
       padding: 24px 20px 12px;
       text-align: center;
-      background: linear-gradient(180deg, #FFF9F2 0%, var(--bg-color) 100%);
+      border-bottom: 2px solid var(--border-color);
     }
 
-    .main-title {
-      font-size: 24px;
-      font-weight: 800;
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
       color: var(--primary-red);
       letter-spacing: 0.5px;
     }
 
-    .event-title-input {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--accent-red);
-      text-align: center;
-      border: none;
-      background: transparent;
-      width: 100%;
-      outline: none;
-      margin-top: 4px;
+    .event-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-top: 6px;
     }
 
     .event-meta {
       font-size: 13px;
       color: var(--text-muted);
       margin-top: 4px;
-      font-weight: 400;
+      font-weight: 600;
     }
 
-    /* Main Content */
+    /* Content Area */
     .content-area {
       flex: 1;
       padding: 16px 20px;
       overflow-y: auto;
     }
 
-    /* Top Spender Card */
+    .section-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 16px 0 10px;
+    }
+
+    /* Forms & Inputs */
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      background: #FFF;
+    }
+
+    .row-inputs { display: flex; gap: 8px; }
+
+    /* Top Spender Highlight */
     .top-spender-card {
-      background: linear-gradient(135deg, var(--primary-red) 0%, var(--accent-red) 100%);
+      background-color: var(--primary-red);
       color: white;
       border-radius: 18px;
-      padding: 14px 18px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 16px rgba(163, 29, 29, 0.25);
+      gap: 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 14px rgba(163, 29, 29, 0.25);
     }
 
     .top-spender-avatar {
@@ -105,205 +122,110 @@
       height: 60px;
       border-radius: 50%;
       background-color: #FFF;
-      border: 3px solid #FFF;
-    }
-
-    .top-spender-info {
-      flex: 1;
+      border: 2px solid #FFF;
     }
 
     .top-spender-badge {
-      font-size: 11px;
-      font-weight: 600;
-      background-color: rgba(255, 255, 255, 0.2);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(255, 255, 255, 0.2);
       padding: 2px 8px;
-      border-radius: 10px;
+      border-radius: 8px;
       display: inline-block;
-      margin-bottom: 2px;
     }
 
-    .top-spender-name {
-      font-size: 16px;
-      font-weight: 600;
-    }
+    .top-spender-name { font-size: 18px; font-weight: 700; }
+    .top-spender-amount { font-size: 20px; font-weight: 800; color: #FFD700; }
 
-    .top-spender-amount {
-      font-size: 22px;
-      font-weight: 800;
-      color: #FFD700;
-    }
-
-    /* Input Add Friend Section */
-    .add-friend-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 20px;
-    }
-
-    .card-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary-red);
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .input-field {
-      padding: 8px 12px;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      font-size: 13px;
-      outline: none;
-    }
-    .input-field:focus {
-      border-color: var(--primary-red);
-    }
-
-    .btn-add {
-      background-color: var(--primary-red);
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    /* Friends List */
-    .friend-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .friend-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 12px 14px;
+    /* Friend Chips / Avatars Selectable */
+    .friends-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .friend-chip {
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-
-    .friend-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background-color: #F0F0F0;
-    }
-
-    .friend-details {
-      flex: 1;
-    }
-
-    .friend-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 4px;
-    }
-
-    .amount-inputs {
-      display: flex;
       gap: 6px;
-      align-items: center;
-      font-size: 12px;
-    }
-
-    .amount-inputs input {
-      width: 60px;
-      padding: 4px 6px;
+      background: #FFF;
       border: 1px solid var(--border-color);
-      border-radius: 6px;
-      font-size: 12px;
-    }
-
-    .total-badge {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary-red);
-      margin-top: 4px;
-    }
-
-    /* Status Button */
-    .status-btn {
-      padding: 6px 12px;
+      padding: 4px 10px 4px 6px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       user-select: none;
-      border: none;
-      transition: all 0.2s;
     }
-
-    .status-btn.pending {
-      background-color: #FFF3E0;
-      color: var(--orange-pending);
-      border: 1px solid #FFE0B2;
-    }
-
-    .status-btn.paid {
-      background-color: #E8F5E9;
-      color: var(--green-paid);
-      border: 1px solid #C8E6C9;
-    }
-
-    /* PromptPay Card */
-    .payment-card {
-      background-color: var(--card-bg);
-      border: 2px dashed var(--primary-red);
-      border-radius: 16px;
-      padding: 14px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    /* Finish & Reset Button */
-    .btn-finish {
-      width: 100%;
-      background-color: #2E7D32;
+    .friend-chip.selected {
+      background: var(--primary-red);
       color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.2);
-      margin-bottom: 20px;
+      border-color: var(--primary-red);
     }
+    .friend-chip img { width: 24px; height: 24px; border-radius: 50%; background: #EEE; }
 
-    /* Logs Section */
-    .logs-container {
-      background-color: var(--card-bg);
+    /* Cards */
+    .friend-card {
+      background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 12px;
-      max-height: 150px;
-      overflow-y: auto;
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
-    .log-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid #F0F0F0;
-      font-size: 12px;
+    .friend-avatar { width: 46px; height: 46px; border-radius: 50%; background: #F0F0F0; }
+    .friend-details { flex: 1; }
+    .friend-name { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+    .item-breakdown { font-size: 11px; color: var(--text-muted); }
+    .total-amount { font-size: 13px; font-weight: 800; color: var(--primary-red); }
+
+    /* Paid / Pending Status Toggle */
+    .status-btn {
+      padding: 6px 10px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
     }
-    .log-item:last-child { border-bottom: none; }
+    .status-btn.pending { background: #FFF3E0; color: var(--orange-pending); border: 1px solid #FFE0B2; }
+    .status-btn.paid { background: #E8F5E9; color: var(--green-paid); border: 1px solid #C8E6C9; }
+
+    /* Buttons */
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-primary { background: var(--primary-red); color: white; }
+    .btn-secondary { background: #2C1810; color: white; margin-top: 6px; }
+    .btn-danger { background: #D32F2F; color: white; padding: 4px 8px; border-radius: 6px; font-size: 10px; }
+
+    /* Log Drawer / Modal */
+    .log-card {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .badge-type {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-food { background: #FFE0B2; color: #E65100; }
+    .badge-drink { background: #E1F5FE; color: #0288D1; }
+
+    .view-tab { display: none; }
+    .view-tab.active { display: block; }
   </style>
 </head>
 <body>
@@ -311,221 +233,342 @@
   <div class="app-container">
     <!-- Header -->
     <header class="app-header">
-      <div class="main-title">เสมียร อีเว๊นนนนนนนนน</div>
-      <input type="text" id="event-title" class="event-title-input" value="GOLDEN HOUR DINNER">
+      <div class="brand-title">เสมียร อีเว๊นนนนนนนนน</div>
+      <div class="event-title" id="display-event-name">CREATE EVENT</div>
       <div class="event-meta">
-        <span id="event-date"></span> • Khun.Nan
+        <span id="display-event-date">Please set date</span> • Khun.Nan
       </div>
     </header>
 
     <div class="content-area">
-      <!-- Top Spender Highlight -->
-      <div class="top-spender-card">
-        <img id="top-spender-img" class="top-spender-avatar" src="https://api.dicebear.com/7.x/bottts/svg?seed=default" alt="Top Spender">
-        <div class="top-spender-info">
-          <span class="top-spender-badge">👑 Top Spender</span>
-          <div class="top-spender-name" id="top-spender-name">ยังไม่มีข้อมูล</div>
-          <div class="top-spender-amount" id="top-spender-amount">฿0</div>
+      
+      <!-- TAB 1: FORM SETUP -->
+      <div id="tab-setup" class="view-tab active">
+        <div class="section-title">1. Event Info</div>
+        <div class="form-group">
+          <label>Event Name</label>
+          <input type="text" id="input-event-name" class="form-control" placeholder="e.g., Golden Hour Party">
         </div>
-      </div>
-
-      <!-- Add Friend Form -->
-      <div class="add-friend-card">
-        <span class="card-label">➕ เพิ่มรายชื่อเพื่อนร่วมทาน</span>
-        <div class="input-row">
-          <input type="text" id="new-friend-name" class="input-field" placeholder="ชื่อเพื่อน..." style="flex:1;">
-          <button class="btn-add" onclick="addFriend()">เพิ่มเพื่อน</button>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="input-event-date" class="form-control">
         </div>
+
+        <div class="section-title">2. Add Friends (DiceBear Avatars)</div>
+        <div class="form-group row-inputs">
+          <input type="text" id="input-friend-name" class="form-control" placeholder="Friend's name">
+          <button class="btn btn-primary" style="width: 80px;" onclick="addFriend()">+ Add</button>
+        </div>
+        <div id="friends-setup-list" style="margin-bottom: 15px;"></div>
+
+        <div class="section-title">3. Add Expenses & Split</div>
+        <div class="form-group">
+          <label>Item Name & Type</label>
+          <div class="row-inputs">
+            <input type="text" id="input-item-name" class="form-control" placeholder="e.g., Pizza / Wine">
+            <select id="input-item-type" class="form-control" style="width: 100px;">
+              <option value="Food">Food</option>
+              <option value="Drink">Drink</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Price (฿)</label>
+          <input type="number" id="input-item-price" class="form-control" placeholder="0.00">
+        </div>
+        <div class="form-group">
+          <label>Who shared this item? (Click to select)</label>
+          <div class="friends-chips" id="item-friends-select">
+            <div style="font-size: 12px; color: var(--text-muted);">Please add friends first</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="addItem()">+ Add Item</button>
+
+        <div class="section-title">Added Items</div>
+        <div id="items-setup-list" style="margin-bottom: 15px;"></div>
+
+        <button class="btn btn-secondary" style="padding: 14px; font-size: 15px;" onclick="calculateAndShowSummary()">🚀 Summary & Calculate Event</button>
       </div>
 
-      <!-- Friends List -->
-      <span class="card-label">รายการค่าใช้จ่ายรายคน</span>
-      <div class="friend-list" id="friend-list">
-        <!-- Friends Render Here -->
+      <!-- TAB 2: EVENT SUMMARY -->
+      <div id="tab-summary" class="view-tab">
+        <!-- Top Spender -->
+        <div class="top-spender-card">
+          <img id="top-spender-img" class="top-spender-avatar" src="" alt="Top Spender">
+          <div>
+            <span class="top-spender-badge">👑 Top Spender</span>
+            <div class="top-spender-name" id="top-spender-name">-</div>
+            <div class="top-spender-amount" id="top-spender-amount">฿0.00</div>
+          </div>
+        </div>
+
+        <div class="section-title">Friends Breakdown</div>
+        <div id="summary-friends-list"></div>
+
+        <!-- PromptPay Info -->
+        <div style="background: #FFF; border: 2px dashed var(--primary-red); border-radius: 14px; padding: 14px; text-align: center; margin: 15px 0;">
+          <div style="font-size: 13px; font-weight: 800; color: var(--text-dark);">PromptPay Payment</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Khun.Nan (081-234-5678)</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="finishAndSaveEvent()">✅ ปิดจบ สรุป Event (Save Log)</button>
+        <button class="btn btn-secondary" onclick="switchTab('tab-setup')">✏️ Edit Event</button>
       </div>
 
-      <!-- PromptPay Payment Card -->
-      <div class="payment-card">
-        <div style="font-weight: 600; font-size: 14px; color: var(--text-dark);">ช่องทางชำระเงิน (PromptPay)</div>
-        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">พร้อมเพย์: 081-234-5678 (Khun.Nan)</div>
+      <!-- TAB 3: SAVED LOGS -->
+      <div id="tab-logs" class="view-tab">
+        <div class="section-title">Saved Event Logs</div>
+        <div id="logs-container"></div>
+        <button class="btn btn-secondary" onclick="switchTab('tab-setup')">+ Create New Event</button>
       </div>
 
-      <!-- Finish & Log Action -->
-      <button class="btn-finish" onclick="finishAndResetEvent()">✅ ปิดจบสรุป Event & เริ่มใหม่</button>
-
-      <!-- History Logs -->
-      <span class="card-label">📂 บันทึก Log Event ที่ผ่านมา</span>
-      <div class="logs-container" id="logs-list">
-        <div style="color: var(--text-muted); text-align: center; font-size: 12px;">ยังไม่มี Log บันทึก</div>
-      </div>
     </div>
   </div>
 
   <script>
-    // System State
+    // State Data
     let friends = [];
+    let items = [];
+    let selectedFriendsForItem = [];
 
-    // Set Default Date (Today)
-    const today = new Date();
-    const dateOptions = { month: 'short', day: 'numeric', year: 'numeric' };
-    document.getElementById('event-date').innerText = today.toLocaleDateString('en-US', dateOptions);
-
-    // Random Cartoon Avatar Generator (DiceBear API)
-    function getRandomAvatar(seed) {
-      const styles = ['bottts', 'fun-emoji', 'adventurer', 'big-smile'];
-      const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-      return `https://api.dicebear.com/7.x/${randomStyle}/svg?seed=${encodeURIComponent(seed)}`;
+    // Switch View Tabs
+    function switchTab(tabId) {
+      document.querySelectorAll('.view-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
     }
 
-    // Add Friend
+    // Add Friend with DiceBear Avatar
     function addFriend() {
-      const nameInput = document.getElementById('new-friend-name');
+      const nameInput = document.getElementById('input-friend-name');
       const name = nameInput.value.trim();
+      if (!name) return alert('กรุณากรอกชื่อเพื่อน');
 
-      if (!name) {
-        alert('กรุณากรอกชื่อเพื่อนก่อนครับ');
-        return;
-      }
+      // Random DiceBear Chic Avatar
+      const seed = encodeURIComponent(name + Math.random());
+      const avatarUrl = `https://api.dicebear.com/7.x/personas/svg?seed=${seed}`;
 
-      const newFriend = {
-        id: Date.now(),
-        name: name,
-        avatar: getRandomAvatar(name + Date.now()),
-        food: 0,
-        drink: 0,
-        paid: false
-      };
-
-      friends.push(newFriend);
+      friends.push({ id: Date.now(), name, avatar: avatarUrl });
       nameInput.value = '';
-      render();
+      renderFriendsSetup();
+      renderItemFriendsSelector();
     }
 
-    // Update Amounts
-    function updateAmount(id, field, value) {
-      const friend = friends.find(f => f.id === id);
-      if (friend) {
-        friend[field] = parseFloat(value) || 0;
-        render();
-      }
+    function removeFriend(id) {
+      friends = friends.filter(f => f.id !== id);
+      renderFriendsSetup();
+      renderItemFriendsSelector();
     }
 
-    // Toggle Paid Status
-    function togglePaid(id) {
-      const friend = friends.find(f => f.id === id);
-      if (friend) {
-        friend.paid = !friend.paid;
-        render();
-      }
-    }
-
-    // Main Render Function
-    function render() {
-      const listEl = document.getElementById('friend-list');
-      listEl.innerHTML = '';
-
-      let topSpender = null;
-      let maxTotal = -1;
-
-      if (friends.length === 0) {
-        listEl.innerHTML = '<div style="color: var(--text-muted); text-align: center; font-size: 12px; padding: 10px;">ยังไม่มีรายชื่อเพื่อน กรอกเพิ่มด้านบนได้เลยครับ</div>';
-      }
-
-      friends.forEach(friend => {
-        const total = friend.food + friend.drink;
-
-        // Check Top Spender
-        if (total > maxTotal && total > 0) {
-          maxTotal = total;
-          topSpender = { ...friend, total };
-        }
-
-        const card = document.createElement('div');
-        card.className = 'friend-card';
-        card.innerHTML = `
-          <img class="friend-avatar" src="${friend.avatar}" alt="${friend.name}">
-          <div class="friend-details">
-            <div class="friend-name">${friend.name}</div>
-            <div class="amount-inputs">
-              Food: <input type="number" value="${friend.food || ''}" placeholder="0" oninput="updateAmount(${friend.id}, 'food', this.value)">
-              Drink: <input type="number" value="${friend.drink || ''}" placeholder="0" oninput="updateAmount(${friend.id}, 'drink', this.value)">
-            </div>
-            <div class="total-badge">Total: ฿${total.toLocaleString()}</div>
+    function renderFriendsSetup() {
+      const container = document.getElementById('friends-setup-list');
+      container.innerHTML = friends.map(f => `
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #FFF; padding: 6px 10px; border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--border-color);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <img src="${f.avatar}" style="width:28px; height:28px; border-radius: 50%;">
+            <span style="font-size: 13px; font-weight: 600;">${f.name}</span>
           </div>
-          <button class="status-btn ${friend.paid ? 'paid' : 'pending'}" onclick="togglePaid(${friend.id})">
-            ${friend.paid ? '✓ Paid' : 'Pending'}
-          </button>
-        `;
-        listEl.appendChild(card);
-      });
-
-      // Update Top Spender Display
-      if (topSpender) {
-        document.getElementById('top-spender-name').innerText = topSpender.name;
-        document.getElementById('top-spender-amount').innerText = `฿${topSpender.total.toLocaleString()}`;
-        document.getElementById('top-spender-img').src = topSpender.avatar;
-      } else {
-        document.getElementById('top-spender-name').innerText = 'ยังไม่มีข้อมูล';
-        document.getElementById('top-spender-amount').innerText = '฿0';
-        document.getElementById('top-spender-img').src = 'https://api.dicebear.com/7.x/bottts/svg?seed=default';
-      }
-    }
-
-    // Finish Event & Save to LocalStorage Logs
-    function finishAndResetEvent() {
-      if (friends.length === 0) {
-        alert('ยังไม่มีข้อมูลเพื่อนใน Event นี้ครับ');
-        return;
-      }
-
-      const eventTitle = document.getElementById('event-title').value || 'UNNAMED EVENT';
-      const grandTotal = friends.reduce((sum, f) => sum + f.food + f.drink, 0);
-
-      // Save Log
-      let logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
-      const newLog = {
-        title: eventTitle,
-        date: document.getElementById('event-date').innerText,
-        total: grandTotal,
-        peopleCount: friends.length,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      };
-
-      logs.unshift(newLog);
-      localStorage.setItem('event_logs', JSON.stringify(logs));
-
-      alert(`สรุป Event "${eventTitle}" เรียบร้อยแล้ว!\nยอดรวมทั้งสิ้น: ฿${grandTotal.toLocaleString()}`);
-
-      // Reset State for Next Event
-      friends = [];
-      document.getElementById('event-title').value = 'NEXT EVENT DINNER';
-      render();
-      renderLogs();
-    }
-
-    // Render Saved Logs
-    function renderLogs() {
-      const logsEl = document.getElementById('logs-list');
-      let logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
-
-      if (logs.length === 0) {
-        logsEl.innerHTML = '<div style="color: var(--text-muted); text-align: center; font-size: 12px;">ยังไม่มี Log บันทึก</div>';
-        return;
-      }
-
-      logsEl.innerHTML = logs.map(log => `
-        <div class="log-item">
-          <div>
-            <strong>${log.title}</strong> (${log.peopleCount} คน)
-            <div style="font-size: 10px; color: var(--text-muted);">${log.date} • ${log.timestamp}</div>
-          </div>
-          <div style="font-weight: 700; color: var(--primary-red);">฿${log.total.toLocaleString()}</div>
+          <button class="btn-danger" onclick="removeFriend(${f.id})">Remove</button>
         </div>
       `).join('');
     }
 
-    // Initialize
-    render();
+    function renderItemFriendsSelector() {
+      const container = document.getElementById('item-friends-select');
+      if (friends.length === 0) {
+        container.innerHTML = '<div style="font-size: 12px; color: var(--text-muted);">Please add friends first</div>';
+        return;
+      }
+      container.innerHTML = friends.map(f => {
+        const isSelected = selectedFriendsForItem.includes(f.id);
+        return `
+          <div class="friend-chip ${isSelected ? 'selected' : ''}" onclick="toggleFriendForOption(${f.id})">
+            <img src="${f.avatar}">
+            <span>${f.name}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleFriendForOption(id) {
+      if (selectedFriendsForItem.includes(id)) {
+        selectedFriendsForItem = selectedFriendsForItem.filter(fId => fId !== id);
+      } else {
+        selectedFriendsForItem.push(id);
+      }
+      renderItemFriendsSelector();
+    }
+
+    // Add Item & Split
+    function addItem() {
+      const name = document.getElementById('input-item-name').value.trim();
+      const type = document.getElementById('input-item-type').value;
+      const price = parseFloat(document.getElementById('input-item-price').value);
+
+      if (!name || isNaN(price) || price <= 0) return alert('กรุณากรอกชื่อรายการและราคาให้ถูกต้อง');
+      if (selectedFriendsForItem.length === 0) return alert('กรุณาเลือกอย่างน้อย 1 คนที่รับประทานรายการนี้');
+
+      items.push({
+        id: Date.now(),
+        name,
+        type,
+        price,
+        sharedWith: [...selectedFriendsForItem]
+      });
+
+      // Clear inputs
+      document.getElementById('input-item-name').value = '';
+      document.getElementById('input-item-price').value = '';
+      selectedFriendsForItem = [];
+      renderItemFriendsSelector();
+      renderItemsSetup();
+    }
+
+    function removeItem(id) {
+      items = items.filter(i => i.id !== id);
+      renderItemsSetup();
+    }
+
+    function renderItemsSetup() {
+      const container = document.getElementById('items-setup-list');
+      container.innerHTML = items.map(i => `
+        <div style="background: #FFF; padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; border: 1px solid var(--border-color); font-size: 12px;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700;">
+            <span><span class="badge-type ${i.type === 'Food' ? 'badge-food' : 'badge-drink'}">${i.type}</span> ${i.name}</span>
+            <span style="color: var(--primary-red);">฿${i.price.toLocaleString()}</span>
+          </div>
+          <div style="color: var(--text-muted); font-size: 11px; margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
+            <span>Shared by: ${i.sharedWith.length} people</span>
+            <button class="btn-danger" onclick="removeItem(${i.id})">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Calculation Engine
+    function calculateAndShowSummary() {
+      const eventName = document.getElementById('input-event-name').value.trim() || 'UNNAMED EVENT';
+      const eventDate = document.getElementById('input-event-date').value || 'N/A';
+
+      if (friends.length === 0) return alert('กรุณาเพิ่มเพื่อนอย่างน้อย 1 คน');
+
+      document.getElementById('display-event-name').innerText = eventName;
+      document.getElementById('display-event-date').innerText = eventDate;
+
+      // Calculate totals per friend
+      const friendTotals = friends.map(f => {
+        let food = 0;
+        let drink = 0;
+
+        items.forEach(item => {
+          if (item.sharedWith.includes(f.id)) {
+            const splitPrice = item.price / item.sharedWith.length;
+            if (item.type === 'Food') food += splitPrice;
+            if (item.type === 'Drink') drink += splitPrice;
+          }
+        });
+
+        return {
+          ...f,
+          food,
+          drink,
+          total: food + drink,
+          paid: false
+        };
+      });
+
+      // Find Top Spender
+      let topSpender = friendTotals.reduce((prev, current) => (prev.total > current.total) ? prev : current, friendTotals[0]);
+
+      document.getElementById('top-spender-name').innerText = topSpender ? topSpender.name : '-';
+      document.getElementById('top-spender-amount').innerText = topSpender ? `฿${topSpender.total.toFixed(2)}` : '฿0.00';
+      document.getElementById('top-spender-img').src = topSpender ? topSpender.avatar : '';
+
+      // Render Summary Friend Cards
+      const container = document.getElementById('summary-friends-list');
+      container.innerHTML = friendTotals.map(f => `
+        <div class="friend-card">
+          <img class="friend-avatar" src="${f.avatar}">
+          <div class="friend-details">
+            <div class="friend-name">${f.name}</div>
+            <div class="item-breakdown">Food: ฿${f.food.toFixed(2)} | Drink: ฿${f.drink.toFixed(2)}</div>
+            <div class="total-amount">Total: ฿${f.total.toFixed(2)}</div>
+          </div>
+          <button class="status-btn pending" id="status-btn-${f.id}" onclick="toggleStatus(${f.id})">
+            ⏳ Pending
+          </button>
+        </div>
+      `).join('');
+
+      switchTab('tab-summary');
+    }
+
+    function toggleStatus(id) {
+      const btn = document.getElementById(`status-btn-${id}`);
+      if (btn.classList.contains('pending')) {
+        btn.classList.remove('pending');
+        btn.classList.add('paid');
+        btn.innerText = '✓ Paid';
+      } else {
+        btn.classList.remove('paid');
+        btn.classList.add('pending');
+        btn.innerText = '⏳ Pending';
+      }
+    }
+
+    // Save Log and Finish
+    function finishAndSaveEvent() {
+      const name = document.getElementById('display-event-name').innerText;
+      const date = document.getElementById('display-event-date').innerText;
+      
+      const totalAmount = items.reduce((sum, i) => sum + i.price, 0);
+
+      const logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
+      logs.unshift({
+        id: Date.now(),
+        name,
+        date,
+        totalAmount,
+        friendCount: friends.length
+      });
+
+      localStorage.setItem('event_logs', JSON.stringify(logs));
+      alert('บันทึก Log เรียบร้อยแล้ว!');
+      renderLogs();
+      
+      // Reset Form for next event
+      friends = [];
+      items = [];
+      selectedFriendsForItem = [];
+      document.getElementById('input-event-name').value = '';
+      renderFriendsSetup();
+      renderItemsSetup();
+      
+      switchTab('tab-logs');
+    }
+
+    function renderLogs() {
+      const logs = JSON.parse(localStorage.getItem('event_logs') || '[]');
+      const container = document.getElementById('logs-container');
+
+      if (logs.length === 0) {
+        container.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 20px;">No event logs yet</div>';
+        return;
+      }
+
+      container.innerHTML = logs.map(l => `
+        <div class="log-card">
+          <div style="display: flex; justify-content: space-between; font-weight: 700;">
+            <span style="color: var(--primary-red);">${l.name}</span>
+            <span>฿${l.totalAmount.toLocaleString()}</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            Date: ${l.date} | Friends: ${l.friendCount} people
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initial Setup
     renderLogs();
   </script>
 </body>
